@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>VT Study Mitra</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  margin:0;
+  font-family: 'Segoe UI', sans-serif;
+  background:#05070f;
+  color:white;
+  overflow-x:hidden;
+}
+
+/* Glow background */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(0,255,255,0.15), transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(255,0,255,0.15), transparent 40%);
+  z-index:-1;
+}
+
+/* Header */
+.header{
+  text-align:center;
+  padding:50px 20px 30px;
+}
+
+.header h1{
+  font-size:40px;
+  background: linear-gradient(90deg, #00f0ff, #b84cff);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+.header p{
+  color:#aaa;
+}
+
+/* Cards */
+.container{
+  max-width:700px;
+  margin:auto;
+  padding:20px;
+}
+
+.card{
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:20px;
+  padding:20px;
+  margin-bottom:20px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.card:hover{
+  background:rgba(255,255,255,0.08);
+  box-shadow:0 0 25px rgba(0,255,255,0.4);
+}
+
+.card h2{
+  margin:0;
+  font-size:22px;
+}
+
+.card p{
+  color:#ccc;
+  margin-top:8px;
+  font-size:14px;
+}
+
+/* CTA Button */
+.cta{
+  text-align:center;
+  margin:50px 0 30px;
+}
+
+.cta button{
+  padding:18px 50px;
+  border:none;
+  border-radius:50px;
+  font-size:18px;
+  font-weight:bold;
+  color:white;
+  background: linear-gradient(90deg, #00eaff, #b84cff);
+  box-shadow:0 0 30px rgba(0,255,255,0.6);
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.cta button:hover{
+  transform:scale(1.1);
+  box-shadow:0 0 40px rgba(200,0,255,0.8);
+}
+
+/* AI Frame */
+#aiBox{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:#000;
+  z-index:999;
+}
+
+#aiBox iframe{
+  width:100%;
+  height:100%;
+  border:none;
+}
+
+#close{
+  position:absolute;
+  top:15px;
+  right:15px;
+  background:#ff004f;
+  color:white;
+  border:none;
+  border-radius:50%;
+  width:45px;
+  height:45px;
+  font-size:20px;
+  cursor:pointer;
+  box-shadow:0 0 20px red;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <h1>VT Study Mitra</h1>
+  <p>Your 24/7 AI Study Companion 🚀</p>
+</div>
+
+<div class="container">
+  <div class="card">
+    <h2>📘 Study Help</h2>
+    <p>Instant doubt solving for all subjects with step-by-step explanations.</p>
+  </div>
+
+  <div class="card">
+    <h2>📄 PDF Analyzer</h2>
+    <p>Upload notes, books & question papers and get summaries instantly.</p>
+  </div>
+
+  <div class="card">
+    <h2>⚡ Motivation</h2>
+    <p>Daily motivation & productivity tips to keep you focused.</p>
+  </div>
+
+  <div class="card">
+    <h2>🧠 MCQs</h2>
+    <p>Practice MCQs, track progress and improve accuracy.</p>
+  </div>
+</div>
+
+<div class="cta">
+  <button onclick="openAI()">🚀 Open VT Study Mitra</button>
+  <div style="color:#777;font-size:12px;margin-top:10px;">Free • No signup • AI Powered</div>
+</div>
+
+<!-- Embedded AI -->
+<div id="aiBox">
+  <button id="close" onclick="closeAI()">✕</button>
+  <iframe src="https://partyrock.aws/u/amansinghcreator/M7tM7rNaK/VT-Study-Mitra"></iframe>
+</div>
+
+<script>
+function openAI(){
+  document.getElementById("aiBox").style.display="block";
+}
+
+function closeAI(){
+  document.getElementById("aiBox").style.display="none";
+}
+</script>
+
+</body>
+</html>
