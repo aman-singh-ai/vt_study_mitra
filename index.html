@@ -8,7 +8,7 @@
 <style>
 body{
   margin:0;
-  font-family:Segoe UI, sans-serif;
+  font-family: "Segoe UI", sans-serif;
   background:#05070f;
   color:white;
 }
@@ -18,41 +18,68 @@ body::before{
   position:fixed;
   inset:0;
   background:
-    radial-gradient(circle at 20% 30%, rgba(0,255,255,0.15), transparent 40%),
-    radial-gradient(circle at 80% 70%, rgba(255,0,255,0.15), transparent 40%);
+    radial-gradient(circle at 20% 30%, rgba(0,255,255,0.18), transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(255,0,255,0.18), transparent 40%);
   z-index:-1;
 }
 
 .header{
   text-align:center;
-  padding:50px 20px 30px;
+  padding:50px 20px 20px;
 }
 
 .header h1{
-  font-size:40px;
+  font-size:42px;
   background: linear-gradient(90deg,#00f0ff,#b84cff);
   -webkit-background-clip:text;
   color:transparent;
 }
 
+.header p{
+  opacity:.85;
+}
+
 .container{
-  max-width:700px;
+  max-width:720px;
   margin:auto;
   padding:20px;
 }
 
 .card{
-  background:rgba(255,255,255,0.05);
-  border:1px solid rgba(255,255,255,0.1);
-  border-radius:20px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.12);
+  border-radius:18px;
   padding:20px;
-  margin-bottom:20px;
+  margin-bottom:18px;
+  cursor:pointer;
   transition:.3s;
 }
 
 .card:hover{
-  box-shadow:0 0 25px cyan;
-  background:rgba(255,255,255,0.08);
+  box-shadow:0 0 20px rgba(0,255,255,.5);
+}
+
+.card h3{
+  margin:0;
+  font-size:18px;
+}
+
+.details{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height .4s ease;
+  opacity:.85;
+}
+
+.card.active .details{
+  max-height:200px;
+  margin-top:12px;
+}
+
+.details p{
+  margin:0;
+  font-size:15px;
+  line-height:1.6;
 }
 
 .cta{
@@ -62,7 +89,7 @@ body::before{
 
 .cta a{
   display:inline-block;
-  padding:18px 50px;
+  padding:18px 55px;
   border-radius:50px;
   text-decoration:none;
   font-size:18px;
@@ -70,10 +97,11 @@ body::before{
   color:white;
   background: linear-gradient(90deg,#00eaff,#b84cff);
   box-shadow:0 0 30px rgba(0,255,255,.6);
+  transition:.3s;
 }
 
 .cta a:hover{
-  transform:scale(1.1);
+  transform:scale(1.08);
 }
 </style>
 </head>
@@ -81,22 +109,67 @@ body::before{
 <body>
 
 <div class="header">
-<h1>VT Study Mitra</h1>
-<p>Your 24/7 AI Study Companion 🚀</p>
+  <h1>VT Study Mitra</h1>
+  <p>Your 24/7 AI Study Companion 🚀</p>
 </div>
 
 <div class="container">
-<div class="card">📘 Study Help – Ask anything</div>
-<div class="card">📄 PDF Analyzer – Upload & understand</div>
-<div class="card">⚡ Motivation – Stay focused</div>
-<div class="card">🧠 MCQs – Test yourself</div>
+
+  <div class="card">
+    <h3>📘 Study Help – Ask Anything</h3>
+    <div class="details">
+      <p>
+        An AI-powered chat assistant that helps students understand concepts,
+        clear doubts instantly, and learn topics in simple language.
+      </p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>📄 PDF Analyzer – Upload & Understand</h3>
+    <div class="details">
+      <p>
+        Upload study PDFs and get summaries, explanations, and important points
+        using AI for faster and smarter learning.
+      </p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>⚡ Motivation – Stay Focused</h3>
+    <div class="details">
+      <p>
+        Provides motivational guidance and productivity support to help students
+        stay consistent and confident during studies.
+      </p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🧠 MCQs – Test Yourself</h3>
+    <div class="details">
+      <p>
+        Generate practice MCQs based on topics to test understanding and
+        reinforce learning effectively.
+      </p>
+    </div>
+  </div>
+
 </div>
 
 <div class="cta">
-<a href="https://partyrock.aws/u/amansinghcreator/M7tM7rNaK/VT-Study-Mitra" target="_blank">
-🚀 Open VT Study Mitra
-</a>
+  <a href="https://partyrock.aws/u/amansinghcreator/M7tM7rNaK/VT-Study-Mitra" target="_blank">
+    🚀 Open VT Study Mitra
+  </a>
 </div>
+
+<script>
+document.querySelectorAll(".card").forEach(card=>{
+  card.addEventListener("click", ()=>{
+    card.classList.toggle("active");
+  });
+});
+</script>
 
 </body>
 </html>
