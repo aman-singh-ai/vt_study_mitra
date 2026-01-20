@@ -1,5 +1,7 @@
 # VT Study Mitra
 
+[![Live Demo](https://img.shields.io/badge/Live-Demo-blue?style=for-the-badge&logo=vercel)](https://vt-study-mitra.vercel.app)
+
 ## Description
 VT Study Mitra is your 24/7 AI-powered study companion designed for B.Tech and competitive exam students. It provides tools like PDF analysis, personalized roadmaps, study materials, and communities for efficient learning.
 
@@ -17,9 +19,14 @@ VT Study Mitra is your 24/7 AI-powered study companion designed for B.Tech and c
 - JavaScript for interactivity (menu toggle, particles, scroll reveals).
 
 ## How to Run
-1. Clone the repo: `git clone https://github.com/aman-singh-ai/vt_study_mitra.git`
-2. Open `index.html` in a browser.
-3. For bot features, links redirect to external AI tools.
+
+This project is already deployed online.
+
+🔗 Live Website: https://vt-study-mitra.vercel.app
+
+Open the link in any browser to access all features, tools, and study resources.
+No installation or setup required.
+
 
 ## Installation
 No installation needed – it's a static web app. Just open in any modern browser.
