@@ -112,8 +112,8 @@ https://vt-study-mitra.vercel.app
 
 ## 📜 License
 
-This project is licensed under the **MIT License**.  
-Free to use, modify, and distribute for educational purposes.
+This project is created for educational and academic purposes only.
+Commercial use is not permitted without permission from the author.
 
 ---
 
