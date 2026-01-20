@@ -1,175 +1,500 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>VT Study Mitra</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VT Study Mitra - Futuristic Edition</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Orbitron', sans-serif; /* Futuristic font */
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e); /* Dark cosmic gradient */
+            color: #ffffff;
+            overflow-x: hidden;
+        }
 
-<style>
-body{
-  margin:0;
-  font-family: "Segoe UI", sans-serif;
-  background:#05070f;
-  color:white;
-}
+        /* Header Styles */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px; /* Smaller padding */
+            background: rgba(0, 0, 0, 0.6); /* Slightly darker for professional look */
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 10;
+            box-shadow: 0 0 8px rgba(0, 255, 204, 0.2); /* Softer shadow */
+        }
 
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  background:
-    radial-gradient(circle at 20% 30%, rgba(0,255,255,0.18), transparent 40%),
-    radial-gradient(circle at 80% 70%, rgba(255,0,255,0.18), transparent 40%);
-  z-index:-1;
-}
+        .header h1 {
+            font-size: 1.5em; /* Smaller font for professional feel */
+            margin: 0;
+            color: #00ffcc;
+            text-shadow: 0 0 8px #00ffcc; /* Softer glow */
+        }
 
-.header{
-  text-align:center;
-  padding:50px 20px 20px;
-}
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 25px; /* Slightly smaller */
+            height: 20px;
+            cursor: pointer;
+        }
 
-.header h1{
-  font-size:42px;
-  background: linear-gradient(90deg,#00f0ff,#b84cff);
-  -webkit-background-clip:text;
-  color:transparent;
-}
+        .hamburger span {
+            width: 100%;
+            height: 2px; /* Thinner lines */
+            background: #ffffff;
+            transition: all 0.3s ease;
+        }
 
-.header p{
-  opacity:.85;
-}
+        .nav-menu {
+            display: none;
+            position: absolute;
+            top: 50px; /* Adjusted for smaller header */
+            right: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 0 15px rgba(0, 255, 204, 0.3);
+            backdrop-filter: blur(10px);
+        }
 
-.container{
-  max-width:720px;
-  margin:auto;
-  padding:20px;
-}
+        .nav-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
 
-.card{
-  background:rgba(255,255,255,0.06);
-  border:1px solid rgba(255,255,255,0.12);
-  border-radius:18px;
-  padding:20px;
-  margin-bottom:18px;
-  cursor:pointer;
-  transition:.3s;
-}
+        .nav-menu li {
+            margin-bottom: 12px;
+        }
 
-.card:hover{
-  box-shadow:0 0 20px rgba(0,255,255,.5);
-}
+        .nav-menu a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1em; /* Smaller font */
+            transition: color 0.3s ease;
+        }
 
-.card h3{
-  margin:0;
-  font-size:18px;
-}
+        .nav-menu a:hover {
+            color: #ff00ff;
+        }
 
-.details{
-  max-height:0;
-  overflow:hidden;
-  transition:max-height .4s ease;
-  opacity:.85;
-}
+        .show-menu {
+            display: block;
+        }
 
-.card.active .details{
-  max-height:200px;
-  margin-top:12px;
-}
+        .container {
+            max-width: 1200px;
+            margin: 60px auto 50px; /* Adjusted for smaller header */
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
 
-.details p{
-  margin:0;
-  font-size:15px;
-  line-height:1.6;
-}
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            margin-bottom: 50px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
 
-.cta{
-  text-align:center;
-  margin:40px 0;
-}
+        .hero.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-.cta a{
-  display:inline-block;
-  padding:18px 55px;
-  border-radius:50px;
-  text-decoration:none;
-  font-size:18px;
-  font-weight:bold;
-  color:white;
-  background: linear-gradient(90deg,#00eaff,#b84cff);
-  box-shadow:0 0 30px rgba(0,255,255,.6);
-  transition:.3s;
-}
+        .hero h1 {
+            font-size: 3em;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            color: #ff00ff; /* Changed to neon magenta for match */
+            text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
 
-.cta a:hover{
-  transform:scale(1.08);
-}
-</style>
+        .hero p {
+            font-size: 1.5em;
+            color: #a8e6ff; /* Light blue to match subtitle */
+            text-shadow: 0 0 5px #a8e6ff;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.3);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            position: relative;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-image: inherit; /* Inherit from section */
+            filter: blur(5px); /* Blur the background image */
+            border-radius: 20px;
+            z-index: -2;
+        }
+
+        .section::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Overlay for readability */
+            border-radius: 20px;
+            z-index: -1;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section h2 {
+            font-size: 2em;
+            color: #ff00ff; /* Neon magenta */
+            text-shadow: 0 0 10px #ff00ff;
+            margin-bottom: 20px;
+            text-align: left;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .highlights {
+            list-style: none;
+            padding: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .highlights li {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 30px;
+            transition: transform 0.3s ease;
+        }
+
+        .highlights li::before {
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            content: "\f005"; /* Star icon */
+            position: absolute;
+            left: 0;
+            color: #00ffcc;
+            text-shadow: 0 0 5px #00ffcc;
+        }
+
+        .highlights li:hover {
+            transform: translateX(10px);
+            color: #ff00ff;
+        }
+
+        .button {
+            display: block;
+            margin: 20px auto 0;
+            padding: 15px 30px;
+            background: linear-gradient(45deg, #00ffcc, #ff00ff);
+            border-radius: 50px;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2em;
+            box-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+            transition: all 0.3s ease;
+            text-align: center;
+            max-width: 300px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.7);
+        }
+
+        .sub-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .sub-button {
+            padding: 10px 20px;
+            background: linear-gradient(45deg, #ff00ff, #00ffcc);
+            border-radius: 30px;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 0 10px rgba(255, 0, 255, 0.5);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sub-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.7);
+        }
+
+        /* Floating Icons */
+        .floating-icons {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 9;
+        }
+
+        .floating-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ff00ff, #00ffcc);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+            animation: float-icon 2s ease-in-out infinite;
+            color: #ffffff;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .floating-icon:hover {
+            transform: scale(1.2);
+        }
+
+        @keyframes float-icon {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Footer Styles */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            font-size: 1em;
+            color: #a8e6ff;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer a {
+            color: #00ffcc;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            color: #ff00ff;
+        }
+
+        /* Background particles for futuristic effect */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            background: #ffffff;
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: float 10s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-100vh); }
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc; }
+            to { text-shadow: 0 0 20px #00ffcc, 0 0 30px #00ffcc, 0 0 40px #00ffcc; }
+        }
+
+        #offers {
+            background-image: url('https://times.neoworlder.com/wp-content/uploads/2025/12/The-Synthetic-Cognition-Challenge-Learn-the-Future-of-AI-With-Your-Own-NeoWorlder-Persona-Guide-805x527.png');
+        }
+
+        #pdf-bot {
+            background-image: url('https://png.pngtree.com/background/20250316/original/pngtree-futuristic-digital-dashboard-with-real-time-data-analytics-and-visualizations-symbolizing-picture-image_16368178.jpg');
+        }
+
+        #roadmap {
+            background-image: url('https://thumbs.dreamstime.com/b/conceptual-digital-roadmap-learning-innovations-futuristic-conceptual-representation-digital-roadmap-orange-geometric-366067170.jpg');
+        }
+
+        #study-material {
+            background-image: url('https://thumbs.dreamstime.com/b/futuristic-d-music-background-featuring-tunnel-glowing-musical-notes-flowing-cybernetic-landscape-neon-pulses-364296044.jpg');
+        }
+
+        #communities {
+            background-image: url('https://img.freepik.com/premium-photo/futuristic-science-classroom-with-holographic-blackboard-high-technology-innovation-in-learning_250678-3608.jpg?semt=ais_hybrid&w=740&q=80');
+        }
+
+        #connect {
+            background-image: url('https://as1.ftcdn.net/jpg/01/93/79/62/1000_F_193796215_RdkjEetr0hMd9csAlRsqPpA8UYu0VF0m.jpg');
+        }
+
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
 </head>
-
 <body>
+    <div class="particles" id="particles"></div>
+    <header class="header">
+        <h1>VT</h1>
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav class="nav-menu" id="navMenu">
+            <ul>
+                <li><a href="#bot">VT Study Mitra Bot</a></li>
+                <li><a href="#pdf-bot">PDF Analyzer Bot</a></li>
+                <li><a href="#roadmap">Roadmap AI</a></li>
+                <li><a href="#study-material">Study Material</a></li>
+                <li><a href="#communities">Communities</a></li>
+                <li><a href="#connect">Connect With Me</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="hero">
+            <h1>VT Study Mitra</h1>
+            <p>Your 24/7 AI-Powered Study Companion 🚀</p>
+        </div>
 
-<div class="header">
-  <h1>VT Study Mitra</h1>
-  <p>Your 24/7 AI Study Companion 🚀</p>
-</div>
+        <div class="section" id="offers">
+            <h2>What VT Study Mitra Offers</h2>
+            <p>VT Study Mitra provides all your study material-related AI apps and bots in one place, making learning efficient and accessible.</p>
+            <ul class="highlights">
+                <li>Study Material: Comprehensive B.Tech notes and resources on Google Drive.</li>
+                <li>PDF Analyzer: Upload PDFs for smart summaries and interactive queries.</li>
+                <li>Roadmap AI: Generate personalized study plans and guides.</li>
+                <li>More tools will be added soon!</li>
+            </ul>
+        </div>
 
-<div class="container">
+        <div class="section" id="pdf-bot">
+            <h2>PDF Analyzer Bot</h2>
+            <p>This bot analyzes your uploaded PDFs to generate short notes, summaries, and includes a chat feature where you can ask anything related to the PDF content.</p>
+            <a href="https://partyrock.aws/u/amansinghcreator/M7tM7rNaK/VT-Study-Mitra" target="_blank" class="button">Open PDF Analyzer Bot</a>
+        </div>
 
-  <div class="card">
-    <h3>📘 Study Help – Ask Anything</h3>
-    <div class="details">
-      <p>
-        An AI-powered chat assistant that helps students understand concepts,
-        clear doubts instantly, and learn topics in simple language.
-      </p>
+        <div class="section" id="roadmap">
+            <h2>Roadmap AI</h2>
+            <p>Need a personalized roadmap, guide, or course? Use this AI tool to generate custom study plans by entering your topic.</p>
+            <a href="https://share.google/GHNFXQXz5yuIChHRO" target="_blank" class="button">Open Roadmap AI</a>
+        </div>
+
+        <div class="section" id="study-material">
+            <h2>Study Material (Google Drive)</h2>
+            <p>This section contains B.Tech notes, coding resources, scripts, and project-related material. Useful for exams, assignments, and practical implementation.</p>
+            <a href="https://drive.google.com/drive/folders/1C8-J3Hcm3NIhBlYsAFzqT5CHWkNHEa73" target="_blank" class="button">Open Study Material</a>
+        </div>
+
+        <div class="section" id="communities">
+            <h2>Student Communities</h2>
+            <p>Join for updates, resources, announcements, and learning discussions.</p>
+            <div class="sub-buttons">
+                <a href="https://whatsapp.com/channel/0029VbBglI9AojZ0HpIrgU0R" target="_blank" class="sub-button"><i class="fab fa-whatsapp"></i> WhatsApp Updates</a>
+                <a href="https://t.me/vistechh" target="_blank" class="sub-button"><i class="fab fa-telegram-plane"></i> Telegram Community</a>
+            </div>
+        </div>
+
+        <div class="section" id="connect">
+            <h2>Connect With Me</h2>
+            <p>Follow for tech content, projects, and updates.</p>
+            <div class="sub-buttons">
+                <a href="https://www.instagram.com/vishtechh?igsh=MXBpcjl0YXF2OWU2eQ==" target="_blank" class="sub-button"><i class="fab fa-instagram"></i> Instagram</a>
+                <a href="https://github.com/aman-singh-ai" target="_blank" class="sub-button"><i class="fab fa-github"></i> GitHub Projects</a>
+            </div>
+        </div>
     </div>
-  </div>
-
-  <div class="card">
-    <h3>📄 PDF Analyzer – Upload & Understand</h3>
-    <div class="details">
-      <p>
-        Upload study PDFs and get summaries, explanations, and important points
-        using AI for faster and smarter learning.
-      </p>
+    <div class="floating-icons">
+        <a href="https://www.instagram.com/vishtechh?igsh=MXBpcjl0YXF2OWU2eQ==" target="_blank" class="floating-icon"><i class="fab fa-instagram"></i></a>
+        <a href="https://github.com/aman-singh-ai" target="_blank" class="floating-icon"><i class="fab fa-github"></i></a>
     </div>
-  </div>
+    <footer class="footer">
+        &copy; 2026 VT Study Mitra | Powered by AI for Education | Gmail - vistechhh@gmail.com | All Rights Reserved
+    </footer>
+    <script>
+        // Toggle Menu
+        function toggleMenu() {
+            const menu = document.getElementById('navMenu');
+            menu.classList.toggle('show-menu');
+        }
 
-  <div class="card">
-    <h3>⚡ Motivation – Stay Focused</h3>
-    <div class="details">
-      <p>
-        Provides motivational guidance and productivity support to help students
-        stay consistent and confident during studies.
-      </p>
-    </div>
-  </div>
+        // Generate floating particles for futuristic effect
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            particle.style.width = `${Math.random() * 5 + 1}px`;
+            particle.style.height = particle.style.width;
+            particle.style.left = `${Math.random() * 100}vw`;
+            particle.style.top = `${Math.random() * 100}vh`;
+            particle.style.animationDuration = `${Math.random() * 10 + 5}s`;
+            particle.style.animationDelay = `${Math.random() * 5}s`;
+            particlesContainer.appendChild(particle);
+        }
 
-  <div class="card">
-    <h3>🧠 MCQs – Test Yourself</h3>
-    <div class="details">
-      <p>
-        Generate practice MCQs based on topics to test understanding and
-        reinforce learning effectively.
-      </p>
-    </div>
-  </div>
+        // Scroll reveal effect
+        const reveals = document.querySelectorAll('.hero, .section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
 
-</div>
-
-<div class="cta">
-  <a href="https://partyrock.aws/u/amansinghcreator/M7tM7rNaK/VT-Study-Mitra" target="_blank">
-    🚀 Open VT Study Mitra
-  </a>
-</div>
-
-<script>
-document.querySelectorAll(".card").forEach(card=>{
-  card.addEventListener("click", ()=>{
-    card.classList.toggle("active");
-  });
-});
-</script>
-
+        reveals.forEach(reveal => {
+            observer.observe(reveal);
+        });
+    </script>
 </body>
 </html>
