@@ -1,7 +1,7 @@
 # 🚀 VT Study Mitra  
 ### Visualise the Technology
 
-[![Live Demo](https://img.shields.io/badge/Live-Demo-blue?style=for-the-badge&logo=vercel)](https://vt-study-mitra.vercel.app)
+[![Live Demo](https://img.shields.io/badge/Live-Demo-yellow?style=for-the-badge&logo=vercel)](https://vt-study-mitra.vercel.app)
 ![Status](https://img.shields.io/badge/Status-Active-success?style=for-the-badge)
 ![Tech](https://img.shields.io/badge/Tech-HTML%20%7C%20CSS%20%7C%20JS-orange?style=for-the-badge)
 
